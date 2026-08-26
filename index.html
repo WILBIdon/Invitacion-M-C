@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mi Primera Comunión - Miguel Angel Sosa Tobón</title>
+    <meta name="description" content="Te invito a celebrar la Primera Comunión de Miguel Angel Sosa Tobón. Reserva la fecha y acompaña este especial momento ceremonial.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1. PANTALLA INICIAL DE PORTADA (COVER SCREEN) -->
+    <div id="cover-screen" class="cover-screen">
+        <div class="cover-container">
+            <img src="inicial.webp" alt="Primera Comunión - Miguel Angel" class="cover-image">
+            <div class="cover-overlay">
+                <div class="cover-badge">
+                    <div class="cover-icon-pulse">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <span class="cover-btn-text">TOCA PARA ABRIR</span>
+                    <span class="cover-subtext">Mi Primera Comunión</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. OVERLAY DE VIDEO INTRO -->
+    <div id="video-screen" class="video-screen hidden">
+        <div class="video-container">
+            <video id="intro-video" playsinline preload="auto">
+                <source src="intro_video.mp4" type="video/mp4">
+            </video>
+            <button id="skip-video-btn" class="skip-video-btn">
+                <span>Entrar a la Invitación</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Botón de Audio Flotante -->
+    <button id="audio-toggle" class="audio-btn hidden" aria-label="Reproducir música de fondo" title="Activar/Desactivar Música">
+        <i class="fa-solid fa-music"></i>
+    </button>
+
+    <!-- Música Instrumental Sacra ("Tu Fidelidad - Marcos Witt Piano") -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 3. CONTENEDOR PRINCIPAL TARJETA (INICIALMENTE OCULTO / SE REVELA DESPUÉS DEL VIDEO) -->
+    <main id="main-container" class="main-container hidden">
+        <!-- Hojas verdes flotando con el viento -->
+        <div class="wind-leaves-container" aria-hidden="true">
+            <span class="wind-leaf leaf-1">🍃</span>
+            <span class="wind-leaf leaf-2">🌿</span>
+            <span class="wind-leaf leaf-3">🍃</span>
+            <span class="wind-leaf leaf-4">🌿</span>
+            <span class="wind-leaf leaf-5">🍃</span>
+            <span class="wind-leaf leaf-6">🌿</span>
+        </div>
+
+        <div class="invitation-card">
+
+            <!-- Encabezado Ceremonial -->
+            <header class="card-header">
+                <span class="tagline">RESERVA LA FECHA</span>
+                <span class="dots">• para •</span>
+                <h2 class="sub-title">MI PRIMERA</h2>
+                <h1 class="main-title">COMUNIÓN</h1>
+            </header>
+
+            <!-- Línea Decorativa con Corazón -->
+            <div class="divider-line">
+                <span class="line"></span>
+                <span class="heart-icon">♥</span>
+                <span class="line"></span>
+            </div>
+
+            <!-- Nombre -->
+            <div class="name-container">
+                <span class="script-name">Miguel Angel</span>
+                <h3 class="surname">Sosa Tobón</h3>
+            </div>
+
+            <!-- Línea con Cruz -->
+            <div class="holy-symbol">
+                <span class="line"></span>
+                <i class="fa-solid fa-cross"></i>
+                <span class="line"></span>
+            </div>
+
+            <!-- Frase Espiritual Completa -->
+            <p class="spiritual-line">
+                "Señor, hoy recibo tu luz y tu amor divino en mi corazón por primera vez. 
+                Deseo compartir esta bendición celestial con las personas más especiales de mi vida."
+            </p>
+
+            <!-- Fecha Destacada -->
+            <div class="date-badge">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="date-content">
+                    <span class="date-prefix">SÁBADO</span>
+                    <span class="date-main">14 de Noviembre, 2026</span>
+                </div>
+            </div>
+
+            <!-- Botones Elegantes para abrir Popups -->
+            <nav class="action-buttons">
+                <button class="btn-popup" data-modal="modal-ceremonia">
+                    <i class="fa-solid fa-church"></i>
+                    <span>Ceremonia</span>
+                </button>
+                <button class="btn-popup" data-modal="modal-recepcion">
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                    <span>Recepción</span>
+                </button>
+                <button class="btn-popup" data-modal="modal-sobres">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span>Lluvia de Sobres</span>
+                </button>
+                <button class="btn-popup" data-modal="modal-rsvp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Confirmar Asistencia</span>
+                </button>
+            </nav>
+
+            <!-- Pie de Tarjeta Destacado -->
+            <footer class="card-footer">
+                <p class="parents-text">Con la bendición de sus padres y padrinos</p>
+                <span class="footer-cross">✝</span>
+                <p class="footer-love">¡Te esperamos con Mucho Amor!</p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- ================================ -->
+    <!--           POPUPS / MODALES       -->
+    <!-- ================================ -->
+
+    <!-- Modal: Ceremonia -->
+    <div id="modal-ceremonia" class="modal-overlay" aria-hidden="true">
+        <div class="modal-card">
+            <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-church"></i></div>
+            <h3 class="modal-title">Ceremonia Religiosa</h3>
+            <div class="modal-divider"></div>
+            <p class="modal-detail"><i class="fa-regular fa-calendar-days"></i> Sábado, 14 de Noviembre, 2026</p>
+            <p class="modal-detail"><i class="fa-regular fa-clock"></i> 11:00 AM</p>
+            <h4 class="modal-venue">Parroquia San José de la Inmaculada</h4>
+            <p class="modal-address">Calle Principal #45-12, Sector El Rosario</p>
+            <a href="https://maps.google.com/?q=Parroquia+San+Jose" target="_blank" class="btn-maps">
+                <i class="fa-solid fa-location-dot"></i> Ver en Google Maps
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal: Recepción -->
+    <div id="modal-recepcion" class="modal-overlay" aria-hidden="true">
+        <div class="modal-card">
+            <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+            <h3 class="modal-title">Recepción & Festejo</h3>
+            <div class="modal-divider"></div>
+            <p class="modal-detail"><i class="fa-regular fa-calendar-days"></i> Sábado, 14 de Noviembre, 2026</p>
+            <p class="modal-detail"><i class="fa-regular fa-clock"></i> 1:00 PM</p>
+            <h4 class="modal-venue">Hacienda & Jardines El Edén</h4>
+            <p class="modal-address">Vía Campestre Km 3, Salón Principal</p>
+            <a href="https://maps.google.com/?q=Hacienda+El+Eden" target="_blank" class="btn-maps">
+                <i class="fa-solid fa-location-dot"></i> Ver en Google Maps
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal: Lluvia de Sobres -->
+    <div id="modal-sobres" class="modal-overlay" aria-hidden="true">
+        <div class="modal-card">
+            <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <h3 class="modal-title">Lluvia de Sobres</h3>
+            <div class="modal-divider"></div>
+            <p class="modal-message">
+                Su presencia es nuestro mayor regalo.<br><br>
+                Si desean realizar un detalle a Miguel Angel, 
+                dispondremos de un <strong>buzón de bendiciones</strong> 
+                durante la recepción.
+            </p>
+            <div class="modal-emoji">🌿 💌 🌿</div>
+        </div>
+    </div>
+
+    <!-- Modal: Confirmar Asistencia (RSVP) -->
+    <div id="modal-rsvp" class="modal-overlay" aria-hidden="true">
+        <div class="modal-card modal-card-rsvp">
+            <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-envelope-circle-check"></i></div>
+            <h3 class="modal-title">Confirmar Asistencia</h3>
+            <p class="modal-subtitle">Por favor confirma antes del 1 de Noviembre</p>
+            <div class="modal-divider"></div>
+
+            <form id="rsvp-form" class="rsvp-form">
+                <div class="form-group">
+                    <label for="guest-name"><i class="fa-solid fa-user"></i> Nombre:</label>
+                    <input type="text" id="guest-name" placeholder="Ej: Familia Tobón" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-circle-question"></i> ¿Nos acompañarás?</label>
+                    <div class="radio-options">
+                        <label class="radio-card">
+                            <input type="radio" name="attendance" value="Sí, con mucho gusto asistiré" checked>
+                            <span class="radio-custom"><i class="fa-solid fa-circle-check"></i> ¡Sí!</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="attendance" value="Lo siento, no podré asistir">
+                            <span class="radio-custom"><i class="fa-solid fa-circle-xmark"></i> No podré</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests-count"><i class="fa-solid fa-users"></i> Asistentes:</label>
+                    <select id="guests-count">
+                        <option value="1 persona">1 Persona</option>
+                        <option value="2 personas" selected>2 Personas</option>
+                        <option value="3 personas">3 Personas</option>
+                        <option value="4 personas">4 Personas</option>
+                        <option value="Familia (5+ personas)">Familia (5+)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-message"><i class="fa-solid fa-comment-dots"></i> Mensaje (opcional):</label>
+                    <textarea id="guest-message" rows="2" placeholder="Bendición o mensaje especial..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Confirmar vía WhatsApp
+                </button>
+            </form>
+
+            <div id="rsvp-success" class="rsvp-success-msg hidden">
+                <i class="fa-solid fa-circle-check success-icon"></i>
+                <h4>¡Muchas Gracias!</h4>
+                <p>Tu confirmación ha sido enviada.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
