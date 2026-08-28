@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             whatsappMsg += `\n🙏 _Enviado desde la invitación digital_`;
 
             // Número de WhatsApp (puedes actualizarlo con el número deseado)
-            const phoneNumber = '573001234567';
+            const phoneNumber = '573187357836';
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMsg)}`;
 
             // Mostrar mensaje de éxito
