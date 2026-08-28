@@ -215,4 +215,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ==========================================
+    // 6. COMPARTIR INVITACIÓN (WEB SHARE API)
+    // ==========================================
+    const btnShare = document.getElementById('btn-share');
+    if (btnShare) {
+        btnShare.addEventListener('click', async () => {
+            const shareData = {
+                title: 'Primera Comunión - Miguel Angel',
+                text: 'Te invito a celebrar mi Primera Comunión. ¡Acompáñanos en este día tan especial!',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    console.log('Error al compartir o cancelado', err);
+                }
+            } else {
+                // Fallback si no soporta Web Share API (ej. PC)
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    const span = btnShare.querySelector('span');
+                    const originalText = span.innerText;
+                    span.innerText = '¡Enlace Copiado!';
+                    setTimeout(() => {
+                        span.innerText = originalText;
+                    }, 2500);
+                });
+            }
+        });
+    }
+
 });
