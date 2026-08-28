@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <!-- Botones Elegantes para abrir Popups (2 arriba, 1 centrado abajo) -->
+            <!-- Botones Elegantes para abrir Popups (2x2 grid) -->
             <nav class="action-buttons">
                 <button class="btn-popup" data-modal="modal-ceremonia">
                     <i class="fa-solid fa-church"></i>
@@ -116,9 +116,13 @@
                     <i class="fa-solid fa-champagne-glasses"></i>
                     <span>Recepción</span>
                 </button>
-                <button class="btn-popup btn-popup-full" data-modal="modal-rsvp">
+                <button class="btn-popup" data-modal="modal-regalos">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span>Lluvia de Sobres</span>
+                </button>
+                <button class="btn-popup" data-modal="modal-rsvp">
                     <i class="fa-brands fa-whatsapp"></i>
-                    <span>Confirmar Asistencia</span>
+                    <span>Asistencia</span>
                 </button>
             </nav>
 
@@ -167,6 +171,22 @@
             <a href="https://maps.google.com/?q=Club+El+Santuario+Antioquia" target="_blank" class="btn-maps">
                 <i class="fa-solid fa-location-dot"></i> Ver en Google Maps
             </a>
+        </div>
+    </div>
+
+    <!-- Modal: Lluvia de Sobres -->
+    <div id="modal-regalos" class="modal-overlay" aria-hidden="true">
+        <div class="modal-card">
+            <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <h3 class="modal-title">Lluvia de Sobres</h3>
+            <div class="modal-divider"></div>
+            <p class="modal-message">
+                El regalo más grande es contar con tu presencia. 
+                Si deseas tener un detalle adicional con Miguel Angel, contaremos con un 
+                buzón para <strong>Lluvia de Sobres</strong> en la recepción.
+            </p>
+            <div class="modal-emoji">✉️🤍</div>
         </div>
     </div>
 
