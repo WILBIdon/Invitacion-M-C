@@ -16,6 +16,11 @@
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="Inicial.jpeg">
     <link rel="apple-touch-icon" href="Inicial.jpeg">
+
+    <!-- Precarga de Recursos Críticos para Carga Instantánea en Móviles -->
+    <link rel="preload" href="inicial.webp" as="image">
+    <link rel="preload" href="background.webp" as="image">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +36,7 @@
     <!-- 1. PANTALLA INICIAL DE PORTADA (COVER SCREEN) -->
     <div id="cover-screen" class="cover-screen">
         <div class="cover-container">
-            <img src="inicial.webp" alt="Primera Comunión - Miguel Angel" class="cover-image">
+            <img src="inicial.webp" alt="Primera Comunión - Miguel Angel" class="cover-image" fetchpriority="high" decoding="async">
             <div class="cover-overlay">
                 <div class="cover-badge">
                     <div class="cover-icon-pulse">
@@ -47,7 +52,7 @@
     <!-- 2. OVERLAY DE VIDEO INTRO -->
     <div id="video-screen" class="video-screen hidden">
         <div class="video-container">
-            <video id="intro-video" playsinline preload="auto">
+            <video id="intro-video" playsinline webkit-playsinline preload="auto">
                 <source src="intro_video.mp4" type="video/mp4">
             </video>
             <button id="skip-video-btn" class="skip-video-btn">
@@ -59,6 +64,11 @@
     <!-- Botón de Audio Flotante -->
     <button id="audio-toggle" class="audio-btn hidden" aria-label="Reproducir música de fondo" title="Activar/Desactivar Música">
         <i class="fa-solid fa-music"></i>
+    </button>
+
+    <!-- Botón de Compartir Flotante (Icono en parte superior izquierda) -->
+    <button id="btn-share" class="share-btn hidden" aria-label="Compartir Invitación" title="Compartir Invitación">
+        <i class="fa-solid fa-share-nodes"></i>
     </button>
 
     <!-- Música Instrumental ("Jesús Amigo") -->
@@ -135,11 +145,6 @@
                     <span>Asistencia</span>
                 </button>
             </nav>
-
-            <button id="btn-share" class="btn-popup btn-popup-full" style="width: 96%; max-width: 440px; margin-top: -6px; margin-bottom: 8px;">
-                <i class="fa-solid fa-share-nodes"></i>
-                <span>Compartir Invitación</span>
-            </button>
 
             <!-- Pie de Tarjeta Destacado -->
             <footer class="card-footer">

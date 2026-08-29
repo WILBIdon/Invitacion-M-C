@@ -94,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (audioBtn) {
             audioBtn.classList.remove('hidden');
         }
+
+        const btnShare = document.getElementById('btn-share');
+        if (btnShare) {
+            btnShare.classList.remove('hidden');
+        }
     }
 
     // ==========================================
@@ -216,33 +221,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 6. COMPARTIR INVITACIÓN (WEB SHARE API)
+    // 6. COMPARTIR INVITACIÓN (COMPATIBLE 100% ANDROID / IPHONE)
     // ==========================================
     const btnShare = document.getElementById('btn-share');
     if (btnShare) {
-        btnShare.addEventListener('click', async () => {
+        btnShare.addEventListener('click', async (e) => {
+            e.preventDefault();
+
             const shareData = {
                 title: 'Primera Comunión - Miguel Angel',
-                text: 'Te invito a celebrar mi Primera Comunión. ¡Acompáñanos en este día tan especial!',
+                text: 'Te invito a celebrar la Primera Comunión de Miguel Angel Sosa Tobón. ¡Toca para abrir la invitación!',
                 url: window.location.href
             };
 
+            const icon = btnShare.querySelector('i');
+
+            // Feedback visual rápido
+            const showSuccessIcon = () => {
+                if (icon) {
+                    icon.className = 'fa-solid fa-check';
+                    setTimeout(() => {
+                        icon.className = 'fa-solid fa-share-nodes';
+                    }, 2500);
+                }
+            };
+
+            let sharedSuccess = false;
+
+            // 1. Intentar API nativa navigator.share (Android / Safari iOS)
             if (navigator.share) {
                 try {
-                    await navigator.share(shareData);
+                    if (navigator.canShare && navigator.canShare(shareData)) {
+                        await navigator.share(shareData);
+                        sharedSuccess = true;
+                    } else {
+                        await navigator.share({
+                            title: shareData.title,
+                            url: shareData.url
+                        });
+                        sharedSuccess = true;
+                    }
                 } catch (err) {
-                    console.log('Error al compartir o cancelado', err);
+                    console.log('Compartir cancelado o bloqueado por el navegador:', err);
+                    // Si el usuario simplemente canceló la hoja de compartir, marcamos como manejado
+                    if (err.name === 'AbortError') {
+                        return;
+                    }
                 }
-            } else {
-                // Fallback si no soporta Web Share API (ej. PC)
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    const span = btnShare.querySelector('span');
-                    const originalText = span.innerText;
-                    span.innerText = '¡Enlace Copiado!';
-                    setTimeout(() => {
-                        span.innerText = originalText;
-                    }, 2500);
-                });
+            }
+
+            // 2. Si Web Share no está disponible o falló (ej. navegadores in-app como WhatsApp/Instagram)
+            if (!sharedSuccess) {
+                // A) Intentar Clipboard API moderna
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        showSuccessIcon();
+                        sharedSuccess = true;
+                    } catch (err) {
+                        console.log('Clipboard API no permitida:', err);
+                    }
+                }
+
+                // B) Respaldo universal con elemento temporal textarea
+                if (!sharedSuccess) {
+                    try {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = window.location.href;
+                        textArea.style.position = 'fixed';
+                        textArea.style.left = '-999999px';
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showSuccessIcon();
+                        sharedSuccess = true;
+                    } catch (err) {
+                        console.log('execCommand falló:', err);
+                    }
+                }
+
+                // C) Último recurso: Abrir directamente el enlace de compartir de WhatsApp
+                if (!sharedSuccess) {
+                    const waShareURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                    window.open(waShareURL, '_blank');
+                }
             }
         });
     }
