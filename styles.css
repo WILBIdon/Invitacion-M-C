@@ -4,8 +4,6 @@
    Textos Grandes, Grandes Botones y Espaciado Armónico
    ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
-
 :root {
     --gold-primary: #C5A059;
     --gold-dark: #9A7A35;
@@ -91,7 +89,7 @@ body {
     top: -30px;
     font-size: 1.3rem;
     opacity: 0;
-    filter: drop-shadow(0 2px 4px rgba(45, 68, 48, 0.2));
+    will-change: transform, opacity;
     animation: floatWind 11s infinite linear;
 }
 
@@ -1048,6 +1046,46 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+/* ==========================================
+   RENDIMIENTO: Animaciones reducidas para
+   usuarios que lo prefieren (accesibilidad)
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .wind-leaf,
+    .cover-badge {
+        animation: none !important;
+    }
+
+    .invitation-card > * {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    .modal-card {
+        transition: none !important;
+    }
+}
+
+/* ==========================================
+   RENDIMIENTO: Fallback para navegadores
+   que no soportan backdrop-filter (gama baja)
+   ========================================== */
+
+@supports not (backdrop-filter: blur(8px)) {
+    .btn-popup {
+        background: rgba(255, 253, 249, 0.97);
+    }
+
+    .card-footer {
+        background: rgba(255, 253, 249, 0.97);
+    }
+
+    .cover-badge {
+        background: rgba(36, 59, 39, 0.75);
+    }
 }
 
 /* ==========================================

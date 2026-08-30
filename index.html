@@ -14,12 +14,12 @@
     <meta property="og:type" content="website">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="Inicial.jpeg">
-    <link rel="apple-touch-icon" href="Inicial.jpeg">
+    <link rel="icon" type="image/jpeg" href="favicon-180.jpg">
+    <link rel="apple-touch-icon" href="favicon-180.jpg">
 
     <!-- Precarga de Recursos Críticos para Carga Instantánea en Móviles -->
     <link rel="preload" href="inicial.webp" as="image">
-    <link rel="preload" href="background.webp" as="image">
+    <link rel="prefetch" href="background.webp" as="image">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,7 @@
     <!-- 2. OVERLAY DE VIDEO INTRO -->
     <div id="video-screen" class="video-screen hidden">
         <div class="video-container">
-            <video id="intro-video" playsinline webkit-playsinline preload="auto">
+            <video id="intro-video" playsinline webkit-playsinline preload="metadata">
                 <source src="intro_video.mp4" type="video/mp4">
             </video>
             <button id="skip-video-btn" class="skip-video-btn">
@@ -72,7 +72,7 @@
     </button>
 
     <!-- Música Instrumental ("Jesús Amigo") -->
-    <audio id="bg-music" loop preload="auto">
+    <audio id="bg-music" loop preload="none">
         <source src="jesus_amigo.mp3" type="audio/mpeg">
     </audio>
 
@@ -268,6 +268,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
